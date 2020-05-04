@@ -21,45 +21,83 @@
                 }
             }
 
-            // prompts the user to input rock, paper, or scissors.
-            function userPlay(){
-
-            }
-
             // Plays a single round of Rock Paper Scissors
-            function play(playerSelection, computerSelection){
+            function playRound(playerSelection, computerSelection){
                 playerSelection = playerSelection.toLowerCase();
 
                 if(playerSelection == computerSelection){
-                    return "Tie!";
+                    return "tie";
                 } else{
-                    // returns a string based on the correct case for all player/computer inputs
+                    // returns a string based on the correct case for all player inputs
                     switch(playerSelection){
                         case "rock":
                             if(computerSelection == "paper"){
-                                return "You Lose! Paper beats Rock";
+                                return "lose";
                             } else{
-                                return "You Win! Rock beats Scissors";
+                                 return "win";
                             }
                             break;
                         case "paper":
                             if(computerSelection == "scissors"){
-                                    return "You Lose! Scissors beats Paper";
-                                } else{
-                                    return "You Win! Paper beats Rock";
-                                }
+                                return "lose";
+                            } else{
+                                 return "win";
+                            }
                                 break;
                         case "scissors":
-                            if(computerSelection == "scissors"){
-                              return "You Lose! Rock beats Scissors";
+                            if(computerSelection == "rock"){
+                              return "lose";
                             } else{
-                                 return "You Win! Scissors beats Paper";
+                                 return "win";
                             }
                             break;
                     }
                 }
-
             }
+
+            function game(){
+                    // counts number of wins
+                    let playerWins = 0;
+                    let computerWins = 0;
+
+                    // store player/computer selection
+                    let playerSelection;
+                    let computerSelection;
+
+                    let numberOfGames = 5
+
+                    // play 5 rounds
+                    for(let i = 0; i < numberOfGames; i++){
+                        // get computer and user inputs
+                        playerSelection = prompt("Choose rock, paper, or scissors: ");
+                        computerSelection = computerPlay();
+
+                        // play a round
+                        let gameResult = playRound(playerSelection, computerSelection);
+
+                        // print out result of game and increment win count
+                        if(gameResult == "tie"){
+                            console.log("Tie!");
+                        } else if(gameResult == "lose"){
+                            console.log("You Lose! " + computerSelection + " beats " + playerSelection)
+                            computerWins++;
+                        } else{
+                            console.log("You Win! " + playerSelection + " beats " + computerSelection)
+                            playerWins++;
+                        }
+                    }
+
+                    // print end result of game
+                    if(playerWins == computerWins){
+                        console.log("After " + numberOfGames + " games, it was a tie!");
+                    } else if(playerWins < computerWins){
+                        console.log("After " + numberOfGames + " games, you lost...");
+                    } else{
+                        console.log("After " + numberOfGames + " games, you won!");
+                    }
+
+                    console.log("Overall, you won " + playerWins + " games and lost " + computerWins + " games.");
+                }
         </script>
     </body>
 </html>
