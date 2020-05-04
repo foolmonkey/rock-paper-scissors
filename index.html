@@ -21,6 +21,15 @@
                 }
             }
 
+            // Prompts the user for an input for the game.
+            function userPlay(){
+                let userInput = prompt("Choose rock, paper, or scissors: ");
+                    
+                userInput = userInput.toLowerCase();
+
+                return userInput;
+            }
+
             // Plays a single round of Rock Paper Scissors
             function playRound(playerSelection, computerSelection){
                 playerSelection = playerSelection.toLowerCase();
@@ -63,13 +72,13 @@
                     // store player/computer selection
                     let playerSelection;
                     let computerSelection;
-
-                    let numberOfGames = 5
+  
+                    const NUM_GAMES = 5
 
                     // play 5 rounds
-                    for(let i = 0; i < numberOfGames; i++){
+                    for(let i = 0; i < NUM_GAMES; i++){
                         // get computer and user inputs
-                        playerSelection = prompt("Choose rock, paper, or scissors: ");
+                        playerSelection = userPlay();
                         computerSelection = computerPlay();
 
                         // play a round
@@ -89,11 +98,11 @@
 
                     // print end result of game
                     if(playerWins == computerWins){
-                        console.log("After " + numberOfGames + " games, it was a tie!");
+                        console.log("After " + NUM_GAMES + " games, it was a tie!");
                     } else if(playerWins < computerWins){
-                        console.log("After " + numberOfGames + " games, you lost...");
+                        console.log("After " + NUM_GAMES + " games, you lost...");
                     } else{
-                        console.log("After " + numberOfGames + " games, you won!");
+                        console.log("After " + NUM_GAMES + " games, you won!");
                     }
 
                     console.log("Overall, you won " + playerWins + " games and lost " + computerWins + " games.");
