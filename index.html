@@ -7,16 +7,58 @@
     </head>
     <body>
         <script>
+            // Returns a random result of either rock, paper, or scissors.
             function computerPlay(){
+                // create random number between 1-3
                 let randomInput = Math.floor((Math.random() * 3) + 1);
                 
                 if(randomInput == 1){
-                    return "Rock";
+                    return "rock";
                 } else if(randomInput == 2){
-                    return "Paper";
+                    return "paper";
                 } else{
-                    return "Scissors";
+                    return "scissors";
                 }
+            }
+
+            // prompts the user to input rock, paper, or scissors.
+            function userPlay(){
+
+            }
+
+            // Plays a single round of Rock Paper Scissors
+            function play(playerSelection, computerSelection){
+                playerSelection = playerSelection.toLowerCase();
+
+                if(playerSelection == computerSelection){
+                    return "Tie!";
+                } else{
+                    // returns a string based on the correct case for all player/computer inputs
+                    switch(playerSelection){
+                        case "rock":
+                            if(computerSelection == "paper"){
+                                return "You Lose! Paper beats Rock";
+                            } else{
+                                return "You Win! Rock beats Scissors";
+                            }
+                            break;
+                        case "paper":
+                            if(computerSelection == "scissors"){
+                                    return "You Lose! Scissors beats Paper";
+                                } else{
+                                    return "You Win! Paper beats Rock";
+                                }
+                                break;
+                        case "scissors":
+                            if(computerSelection == "scissors"){
+                              return "You Lose! Rock beats Scissors";
+                            } else{
+                                 return "You Win! Scissors beats Paper";
+                            }
+                            break;
+                    }
+                }
+
             }
         </script>
     </body>
