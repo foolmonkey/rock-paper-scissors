@@ -1,112 +1,244 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <title>Rock Paper Scissors</title>
-        <meta charset="UTF-8"/>
-    </head>
-    <body>
-        <script>
-            // Returns a random result of either rock, paper, or scissors.
-            function computerPlay(){
-                // create random number between 1-3
-                let randomInput = Math.floor((Math.random() * 3) + 1);
-                
-                if(randomInput == 1){
-                    return "rock";
-                } else if(randomInput == 2){
-                    return "paper";
-                } else{
-                    return "scissors";
-                }
+
+<head>
+    <title>Rock Paper Scissors</title>
+    <meta charset="UTF-8" />
+    <link href="styles/cssreset.css" rel="stylesheet" type="text/css">
+    <link href="styles/stylesheet.css" rel="stylesheet" type="text/css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">    
+</head>
+
+<body>
+    <!--
+        Create three buttons, one for each selection. Add an event listener to the buttons that calls your 
+        playRound function with the correct playerSelection every time a button is clicked. 
+        (you can keep the console.logs for this step)
+
+        Add a div for displaying results and change all of your console.logs into DOM methods.
+
+        Display the running score, and announce a winner of the game once one player reaches 5 points.
+
+        You will likely have to refactor (rework/rewrite) your original code to make it work for this. 
+        That’s OK! Reworking old code is an important part of the programmer’s life.
+        -->
+    <h1 id="gameName">Rock Paper Scissors</h1>
+
+    <div id="game">
+        <div class="endResult" id="loser">GAME OVER</div>
+        <div class="endResult" id="winner">WIN</div>
+        <div class="endResult" id="tie">TIE</div>
+        <div id="rounds">
+            <h2>ROUND 1</h2>
+            <p id="roundResult">Choose your fighter...</p>
+        </div>
+
+        <div id="players">
+            <div id="user" class="gamer">
+                <h2 class="playerTitle">You</h2>
+
+                <p id="userCount" class="points">0</p>
+
+                <div id="playInput" class="playButtons">
+                    <button>Rock</button>
+                    <button>Paper</button>
+                    <button>Scissors</button>
+                </div>
+            </div>
+
+            <div id="computer" class="gamer">
+                <h2 class="playerTitle">Opponent</h2>
+
+                <p id="opponentCount" class="points">0</p>
+
+                <div id="opponentInput" class="playButtons">
+                    <button>Rock</button>
+                    <button>Paper</button>
+                    <button>Scissors</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+
+    </style>
+
+    <script>
+        // Returns a random result of either rock, paper, or scissors.
+        function computerPlay() {
+            // create random number between 1-3
+            let randomInput = Math.floor((Math.random() * 3) + 1);
+
+            if (randomInput == 1) {
+                return "rock";
+            } else if (randomInput == 2) {
+                return "paper";
+            } else if (randomInput == 3) {
+                return "scissors";
             }
+        }
 
-            // Prompts the user for an input for the game.
-            function userPlay(){
-                let userInput = prompt("Choose rock, paper, or scissors: ");
-                    
-                userInput = userInput.toLowerCase();
+        // Plays a single round of Rock Paper Scissors
+        function playRound(playerSelection) {
+            let computerSelection = computerPlay();
+            playerSelection = playerSelection.toLowerCase();
+            let result;
 
-                return userInput;
-            }
-
-            // Plays a single round of Rock Paper Scissors
-            function playRound(playerSelection, computerSelection){
-                playerSelection = playerSelection.toLowerCase();
-
-                if(playerSelection == computerSelection){
-                    return "tie";
-                } else{
-                    // returns a string based on the correct case for all player inputs
-                    switch(playerSelection){
-                        case "rock":
-                            if(computerSelection == "paper"){
-                                return "lose";
-                            } else{
-                                 return "win";
-                            }
-                            break;
-                        case "paper":
-                            if(computerSelection == "scissors"){
-                                return "lose";
-                            } else{
-                                 return "win";
-                            }
-                                break;
-                        case "scissors":
-                            if(computerSelection == "rock"){
-                              return "lose";
-                            } else{
-                                 return "win";
-                            }
-                            break;
-                    }
-                }
-            }
-
-            function game(){
-                    // counts number of wins
-                    let playerWins = 0;
-                    let computerWins = 0;
-
-                    // store player/computer selection
-                    let playerSelection;
-                    let computerSelection;
-  
-                    const NUM_GAMES = 5
-
-                    // play 5 rounds
-                    for(let i = 0; i < NUM_GAMES; i++){
-                        // get computer and user inputs
-                        playerSelection = userPlay();
-                        computerSelection = computerPlay();
-
-                        // play a round
-                        let gameResult = playRound(playerSelection, computerSelection);
-
-                        // print out result of game and increment win count
-                        if(gameResult == "tie"){
-                            console.log("Tie!");
-                        } else if(gameResult == "lose"){
-                            console.log("You Lose! " + computerSelection + " beats " + playerSelection)
-                            computerWins++;
-                        } else{
-                            console.log("You Win! " + playerSelection + " beats " + computerSelection)
-                            playerWins++;
+            if (playerSelection == computerSelection) {
+                result = "tie";
+            } else {    
+                // returns a string based on the correct case for all player inputs
+                switch (playerSelection) {
+                    case "rock":
+                        if (computerSelection == "paper") {
+                            result = "lose";
+                        } else {
+                            result = "win";
                         }
-                    }
-
-                    // print end result of game
-                    if(playerWins == computerWins){
-                        console.log("After " + NUM_GAMES + " games, it was a tie!");
-                    } else if(playerWins < computerWins){
-                        console.log("After " + NUM_GAMES + " games, you lost...");
-                    } else{
-                        console.log("After " + NUM_GAMES + " games, you won!");
-                    }
-
-                    console.log("Overall, you won " + playerWins + " games and lost " + computerWins + " games.");
+                        break;
+                    case "paper":
+                        if (computerSelection == "scissors") {
+                            result = "lose";
+                        } else {
+                            result = "win";
+                        }
+                        break;
+                    case "scissors":
+                        if (computerSelection == "rock") {
+                            result = "lose";
+                        } else {
+                            result = "win";
+                        }
+                        break;
                 }
-        </script>
-    </body>
+            }
+
+            // change css/html
+            displayRound(result, playerSelection, computerSelection);
+
+            return result;
+        }
+
+        function game(userInput) {
+            // counts number of wins
+            let playerWins = 0;
+            let computerWins = 0;
+
+            // counts number of games
+            const NUM_GAMES = 5
+            let currentGame = document.getElementById("rounds").children[0];
+            let currentGameNumber = Number(currentGame.textContent.slice(-1));
+
+            if (currentGameNumber <= NUM_GAMES) {
+                // play a round
+                let gameResult = playRound(userInput);
+
+                let userWins = document.getElementById("userCount");
+                let opponentWins = document.getElementById("opponentCount");
+
+                let result;
+
+                // save result of current game
+                if (gameResult == "win") {
+                    result = userWins;
+                } else if (gameResult == "lose") {
+                    result = opponentWins;
+                }
+
+                if (gameResult != "tie") {
+                    result.textContent = Number(result.textContent) + 1;
+                }
+
+                // increment game number
+                currentGameNumber++;
+                currentGame.textContent = "ROUND " + currentGameNumber;
+
+                if (currentGameNumber >= NUM_GAMES) {
+                    let finalUserWins = document.getElementById("userCount").textContent;
+                    let finalOpponentWins = document.getElementById("opponentCount").textContent;
+                    
+                    let finalResult;
+
+                    if(finalUserWins > finalOpponentWins){
+                        finalResult = document.getElementById("winner");
+                    } else if(finalUserWins == finalOpponentWins){
+                        finalResult = document.getElementById("tie");
+                    } else{
+                        finalResult = document.getElementById("loser");
+                    }
+
+                    finalResult.classList.add("end");
+                    finalResult.style.visibility = 'visible';
+
+                    // reset rounds
+                    window.setTimeout(function(e){
+                        document.getElementById("rounds").children[0].textContent = "ROUND 1";
+                        document.getElementById("roundResult").textContent = "Choose your fighter...";
+
+                        let opponentChoice = document.getElementById("opponentInput").children;
+            
+                        for (let i = 0; i < opponentChoice.length; i++) {
+                            opponentChoice[i].style.backgroundColor = 'rgb(138, 138, 138)';
+                        }
+
+                        userWins.textContent = '0';
+                        opponentWins.textContent = '0';
+                    }, 1500);
+
+                    finalResult.ontransitionend = () => {
+                        finalResult.classList.remove("end");
+                        finalResult.style.visibility = 'hidden';
+                    };
+                }
+            }
+        }
+
+        function displayRound(result, userInput, computerInput) {
+            let message;
+
+            switch (result) {
+                case "tie":
+                    message = `It's a tie! you both picked ${userInput}`;
+                    break;
+                case "win":
+                    message = `You won! ${userInput} beats ${computerInput}`;
+                    break;
+                case "lose":
+                    message = `You lost! ${computerInput} beats ${userInput}`;
+                    break;
+            }
+
+            let opponentChoice = document.getElementById("opponentInput").children;
+            
+            for (let i = 0; i < opponentChoice.length; i++) {
+                if(opponentChoice[i].textContent.toLowerCase() == computerInput){
+                    opponentChoice[i].style.backgroundColor = 'rgb(39, 102, 175)';
+                    opponentChoice[i].classList.add("increaseScale");
+
+                    opponentChoice[i].ontransitionend = () => {
+                        opponentChoice[i].classList.remove("increaseScale");
+
+                        let messageWindow = document.getElementById("roundResult");
+                        messageWindow.textContent = message;
+                    };
+                } else{
+                    opponentChoice[i].style.backgroundColor = 'rgb(138, 138, 138)';
+                }
+            }
+        }
+
+        //create onclick events for play buttons
+        let playInputButtons = document.getElementById("playInput").children;
+
+        for (let i = 0; i < playInputButtons.length; i++) {
+            playInputButtons[i].onclick = ('click', function (e) {
+                game(playInputButtons[i].textContent);
+            });
+        }
+    </script>
+</body>
+
 </html>
