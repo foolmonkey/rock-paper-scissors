@@ -87,7 +87,7 @@ function game(userInput) {
         currentGameNumber++;
         currentGame.textContent = "ROUND " + currentGameNumber;
 
-        if (currentGameNumber >= NUM_GAMES) {
+        if (currentGameNumber > NUM_GAMES) {
             let finalUserWins = document.getElementById("userCount").textContent;
             let finalOpponentWins = document.getElementById("opponentCount").textContent;
 
