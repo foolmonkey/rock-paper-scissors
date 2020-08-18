@@ -1,56 +1,64 @@
 <!DOCTYPE html>
 
 <html>
-
-<head>
+  <head>
     <title>Rock Paper Scissors</title>
     <meta charset="UTF-8" />
-    <link href="styles/cssreset.css" rel="stylesheet" type="text/css">
-    <link href="styles/stylesheet.css" rel="stylesheet" type="text/css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">    
-</head>
+    <link href="styles/cssreset.css" rel="stylesheet" type="text/css" />
+    <link href="styles/stylesheet.css" rel="stylesheet" type="text/css" />
+    <script
+      src="https://kit.fontawesome.com/64486ec299.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@400;600;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <h1 id="gameName">Rock Paper Scissors</h1>
 
     <div id="game">
-        <div class="endResult" id="loser">GAME OVER</div>
-        <div class="endResult" id="winner">WIN</div>
-        <div class="endResult" id="tie">TIE</div>
-        <div id="rounds">
-            <h2>ROUND 1</h2>
-            <p id="roundResult">Choose your fighter...</p>
+      <div class="endResult" id="loser">GAME OVER</div>
+      <div class="endResult" id="winner">WIN</div>
+      <div class="endResult" id="tie">TIE</div>
+      <div id="rounds">
+        <h2>ROUND 1</h2>
+        <p id="roundResult">Choose your fighter...</p>
+      </div>
+
+      <div id="players">
+        <div id="user" class="gamer">
+          <h2 class="playerTitle">You</h2>
+
+          <p id="userCount" class="points">0</p>
+
+          <div id="playInput" class="playButtons">
+            <button>Rock</button>
+            <button>Paper</button>
+            <button>Scissors</button>
+          </div>
         </div>
 
-        <div id="players">
-            <div id="user" class="gamer">
-                <h2 class="playerTitle">You</h2>
+        <div id="computer" class="gamer">
+          <h2 class="playerTitle">Opponent</h2>
 
-                <p id="userCount" class="points">0</p>
+          <p id="opponentCount" class="points">0</p>
 
-                <div id="playInput" class="playButtons">
-                    <button>Rock</button>
-                    <button>Paper</button>
-                    <button>Scissors</button>
-                </div>
-            </div>
-
-            <div id="computer" class="gamer">
-                <h2 class="playerTitle">Opponent</h2>
-
-                <p id="opponentCount" class="points">0</p>
-
-                <div id="opponentInput" class="playButtons">
-                    <button>Rock</button>
-                    <button>Paper</button>
-                    <button>Scissors</button>
-                </div>
-            </div>
+          <div id="opponentInput" class="playButtons">
+            <button>Rock</button>
+            <button>Paper</button>
+            <button>Scissors</button>
+          </div>
         </div>
+      </div>
     </div>
 
-    <script type="text/javascript" src="script.js"></script>
-</body>
+    <a id="github" href="https://github.com/foolmonkey"
+      ><i class="fab fa-github fa-2x"></i
+    ></a>
 
+    <script type="text/javascript" src="script.js"></script>
+  </body>
 </html>
